@@ -2,12 +2,13 @@
 
 ```py
 
-import math
+from math import pi
 
-r = float(input("input radius:"))
-c = 2 * math.pi * r
-s = math.pi * r * r
-print("the perimeter is " + str(c) + ",the area is " + str(s))
+r = float(input("输入圆半径："))
+c = 2 * pi * r
+s = pi * r ** 2
+print("圆周长为：%.2f" % c, ";圆的面积为：%.2f" % s)
+
 
 ```
 
@@ -36,7 +37,7 @@ b = int(input("input integer b: "))
 
 try:
     print("a/b: ", a / b)
-except ZeroDivisionError as e:
+except (ZeroDivisionError, ValueError) as e:
     print(e)
 
 
