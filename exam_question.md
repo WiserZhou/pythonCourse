@@ -54,8 +54,8 @@ def func_lib():
     return add
 
 
-fun = func_lib()
-print(fun(1, 2))
+print(func_lib()(1, 2))
+
 
 ```
 
@@ -104,30 +104,33 @@ class Teacher(Citizen):
 # 已知一个字符串包含许多组英文单词和中文单词，请将中文和英文分别挑出来，组成中文和英文字符串。如，I我am很very利害good->我很利害I am very good
 
 ```python
-import re
+def is_non_ascii(char):
+    """判断一个字符是否为非ASCII字符"""
+    return ord(char) >= 128
 
 
-def separate_words(s):
-    # 使用正则表达式匹配中文字符和英文单词
-    chinese_words = re.findall(r'[\u4e00-\u9fff]+', s)
-    english_words = re.findall(r'[a-zA-Z]+', s)
+def main():
+    s = input("输入句子:")  # 输入字符串
+    non_ascii_chars = ""  # 存储非ASCII字符
+    ascii_chars = ""  # 存储ASCII字符
+    last_was_non_ascii = False  # 标记变量，用于控制空格插入
 
-    # 将匹配到的中文字符和英文单词分别连接成字符串
-    chinese_string = ''.join(chinese_words)
-    english_string = ' '.join(english_words)
+    for char in s:
+        if is_non_ascii(char):  # 判断是否为非ASCII字符
+            if not last_was_non_ascii:
+                ascii_chars += ' '  # 插入空格
+            non_ascii_chars += char  # 将非ASCII字符添加到non_ascii_chars
+            last_was_non_ascii = True
+        else:
+            ascii_chars += char  # 将ASCII字符添加到ascii_chars
+            last_was_non_ascii = False
 
-    return chinese_string, english_string
+    print("非ASCII字符:", non_ascii_chars)  # 输出非ASCII字符组成的字符串
+    print("ASCII字符:", ascii_chars)  # 输出ASCII字符组成的字符串，并在不同类型字符间插入空格
 
 
-# 示例字符串
-s = "I我am很very利害good"
-
-# 分离中文和英文
-chinese, english = separate_words(s)
-
-# 输出结果
-print("中文:", chinese)
-print("英文:", english)
+if __name__ == "__main__":
+    main()
 
 ```
 
