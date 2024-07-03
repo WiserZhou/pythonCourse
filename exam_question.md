@@ -1,15 +1,12 @@
 # 输入圆的半径，计算周长和面积并输出
 
 ```py
-
 from math import pi
 
-r = float(input("输入圆半径："))
+r = float(input("input the radius:"))
 c = 2 * pi * r
 s = pi * r ** 2
-print("圆周长为：%.2f" % c, ";圆的面积为：%.2f" % s)
-
-
+print(f'perimeter:{c:.2f},area:{s:.2f}')
 ```
 
 # 建立3x3的矩阵并输出
@@ -32,15 +29,12 @@ for row in matrix:
 # 输入两整数，打印它们相除之后的结果，若输入的不是整数或除数为0，进行异常处理
 
 ```python
-a = int(input("input integer a: "))
-b = int(input("input integer b: "))
-
 try:
+    a = int(input("input integer a: "))
+    b = int(input("input integer b: "))
     print("a/b: ", a / b)
 except (ZeroDivisionError, ValueError) as e:
     print(e)
-
-
 ```
 
 # 定义一个函数func_lib()，在其中定义函数add()计算两数之和并返回。声明func_lib()实例，计算1,2并输出
@@ -50,13 +44,9 @@ except (ZeroDivisionError, ValueError) as e:
 def func_lib():
     def add(x, y):
         return x + y
-
     return add
 
-
 print(func_lib()(1, 2))
-
-
 ```
 
 # 以内置高阶函数实现计算列表中正数之和
@@ -157,9 +147,9 @@ for num in fibonacci():
 # 基于UDP协议的网络编程
 
 ```python
-
 import socket
 
+# 创建一个 UDP socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # 绑定到本地地址和端口
@@ -177,12 +167,16 @@ while True:
     # 打印接收到的数据和客户端地址
     print('Received:', data, 'from', addr)
 
-# 关闭socket
+# 关闭 socket
 s.close()
+
+```
+
+```python
 
 import socket
 
-# 创建一个UDP socket
+# 创建一个 UDP socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # 服务器地址和端口
@@ -192,15 +186,15 @@ host = '127.0.0.1'
 while True:
     # 输入消息
     msg = input()
-
+    
+    # 发送消息到服务器
+    s.sendto(msg.encode("utf-8"), (host, port))
+    
     # 如果输入为空，退出循环
     if not msg:
         break
-
-    # 发送消息到服务器
-    s.sendto(msg.encode("utf-8"), (host, port))
-
-# 关闭socket
+        
+# 关闭 socket
 s.close()
 
 ```
@@ -211,7 +205,6 @@ s.close()
 # models.py
 
 from django.db import models
-from django.utils import timezone
 
 
 class Book(models.Model):
